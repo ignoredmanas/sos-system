@@ -12,9 +12,12 @@ def create_app():
     db.init_app(app)
 
     from models.user import User
+    from models.contact import Contact
     from routes.auth_routes import auth_bp
+    from routes.contact_routes import contact_bp
 
     app.register_blueprint(auth_bp)
+    app.register_blueprint(contact_bp)
 
     @app.route("/")
     def home():
