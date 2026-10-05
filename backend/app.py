@@ -13,11 +13,14 @@ def create_app():
 
     from models.user import User
     from models.contact import Contact
+    from models.location import Location
     from routes.auth_routes import auth_bp
     from routes.contact_routes import contact_bp
+    from routes.location_routes import location_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(contact_bp)
+    app.register_blueprint(location_bp)
 
     @app.route("/")
     def home():
