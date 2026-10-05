@@ -14,13 +14,16 @@ def create_app():
     from models.user import User
     from models.contact import Contact
     from models.location import Location
+    from models.sos_event import SOSEvent
     from routes.auth_routes import auth_bp
     from routes.contact_routes import contact_bp
     from routes.location_routes import location_bp
+    from routes.sos_routes import sos_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(contact_bp)
     app.register_blueprint(location_bp)
+    app.register_blueprint(sos_bp)
 
     @app.route("/")
     def home():
