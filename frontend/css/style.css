@@ -1,0 +1,845 @@
+/* =====================================================
+   style.css  -  Cloud-based SOS System for Women
+   -----------------------------------------------------
+   Mobile-first: the normal styles are for phones.
+   The @media block at the bottom adjusts bigger screens.
+   Theme: red and white.
+   Sections:
+     1. Colours and sizes
+     2. Reset and base
+     3. Layout, header, bottom navigation
+     4. Cards and text
+     5. Buttons
+     6. Forms
+     7. Messages, loading, helpers
+     8. Landing page (index.html)
+     9. Login / Register page
+    10. Dashboard (SOS button, banner, tracking)
+    11. Contacts and History pages
+    12. Bigger screens
+   ===================================================== */
+
+
+/* ---------- 1. Colours and sizes (change the theme here) ---------- */
+:root {
+  --red: #d32f2f;
+  --red-dark: #b71c1c;
+  --red-light: #ffebee;
+  --green: #2e7d32;
+  --green-light: #e8f5e9;
+  --white: #ffffff;
+  --bg: #fff5f5;
+  --text: #212121;
+  --text-light: #616161;
+  --border: #e0e0e0;
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --tap: 48px; /* minimum height of anything the user taps */
+}
+
+
+/* ---------- 2. Reset and base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+a {
+  color: var(--red);
+}
+
+/* Show a clear outline when using the keyboard */
+.btn:focus-visible,
+.tab:focus-visible,
+.sos-button:focus-visible,
+.bottom-nav a:focus-visible {
+  outline: 3px solid #ffb300;
+  outline-offset: 2px;
+}
+
+
+/* ---------- 3. Layout, header, bottom navigation ---------- */
+
+/* Centres the page content and keeps it phone-sized */
+.container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Add class="has-nav" to <body> on pages that show the bottom navigation,
+   so the navigation bar does not cover the content */
+body.has-nav {
+  padding-bottom: calc(72px + env(safe-area-inset-bottom));
+}
+
+/* Top red bar */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--red);
+  color: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.app-header-inner {
+  max-width: 480px;
+  min-height: 56px;
+  margin: 0 auto;
+  padding: 4px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.app-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.logout-btn {
+  min-height: var(--tap);
+  padding: 0 14px;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Bottom navigation (Dashboard / Contacts / History) */
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-nav a {
+  flex: 1;
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-top: 3px solid transparent;
+}
+
+.bottom-nav a.active {
+  color: var(--red);
+  border-top-color: var(--red);
+}
+
+
+/* ---------- 4. Cards and text ---------- */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.page-title {
+  font-size: 1.4rem;
+  color: var(--red-dark);
+  margin: 8px 0 16px;
+}
+
+.small-text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+
+/* ---------- 5. Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  padding: 0 20px;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled,
+.btn.loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Full width button */
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* Red filled button */
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: var(--red-dark);
+}
+
+/* White button with a red border (also used for Delete) */
+.btn-outline {
+  background: var(--white);
+  color: var(--red);
+  border-color: var(--red);
+}
+.btn-outline:hover {
+  background: var(--red-light);
+}
+
+/* Green button ("I am safe") */
+.btn-success {
+  background: var(--green);
+  color: var(--white);
+}
+.btn-success:hover {
+  background: #1b5e20;
+}
+
+/* Buttons for the red landing page background */
+.btn-white {
+  background: var(--white);
+  color: var(--red-dark);
+}
+.btn-outline-white {
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+
+/* Put two buttons side by side */
+.btn-row {
+  display: flex;
+  gap: 12px;
+}
+.btn-row .btn {
+  flex: 1;
+}
+
+/* Small spinner inside a button while it is loading
+   (api.js adds the class "loading" to the button) */
+.btn.loading::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+
+/* ---------- 6. Forms ---------- */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* font-size 16px stops phones from zooming in when typing */
+.form-group input,
+.form-group select {
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+}
+
+/* Add this class to an input that has wrong data */
+.form-group input.input-error {
+  border-color: var(--red);
+}
+
+.form-hint {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+
+/* ---------- 7. Messages, loading, helpers ---------- */
+.alert {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.alert-error {
+  background: var(--red-light);
+  color: var(--red-dark);
+  border-color: #ef9a9a;
+}
+
+.alert-success {
+  background: var(--green-light);
+  color: var(--green);
+  border-color: #a5d6a7;
+}
+
+.alert-info {
+  background: #e3f2fd;
+  color: #0d47a1;
+  border-color: #90caf9;
+}
+
+/* Big spinner for "Loading..." areas */
+.loading-box {
+  padding: 16px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 8px;
+  border: 4px solid var(--red-light);
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shown when a list is empty */
+.empty {
+  padding: 24px 8px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+/* Small helper classes */
+.hidden {
+  display: none !important;
+}
+.text-center {
+  text-align: center;
+}
+.mt-1 {
+  margin-top: 8px;
+}
+.mt-2 {
+  margin-top: 16px;
+}
+.mb-1 {
+  margin-bottom: 8px;
+}
+.mb-2 {
+  margin-bottom: 16px;
+}
+
+
+/* ---------- 8. Landing page (index.html) ---------- */
+.hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  text-align: center;
+  color: var(--white);
+  background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+}
+
+.hero-icon {
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.hero h1 {
+  margin: 12px 0;
+  font-size: 1.9rem;
+}
+
+.hero p {
+  max-width: 360px;
+  margin-bottom: 28px;
+  opacity: 0.95;
+}
+
+.hero-buttons {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+/* ---------- 9. Login / Register page ---------- */
+.auth-wrapper {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-logo {
+  margin-bottom: 4px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--red);
+}
+
+.auth-subtitle {
+  margin-bottom: 16px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+/* Login / Register switch */
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 4px;
+  background: var(--red-light);
+  border-radius: var(--radius);
+}
+
+.tab {
+  flex: 1;
+  min-height: var(--tap);
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--red-dark);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: var(--red);
+  color: var(--white);
+}
+
+.link-center {
+  display: block;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+/* ---------- 10. Dashboard ---------- */
+
+/* Red "SOS ACTIVE" banner (blinks slowly) */
+.sos-banner {
+  margin-bottom: 16px;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: var(--red);
+  color: var(--white);
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.sos-section {
+  padding: 8px 0 16px;
+  text-align: center;
+}
+
+/* Box that holds the round button and the progress ring around it */
+.sos-container {
+  position: relative;
+  width: min(72vw, 260px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 12px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* The ring is an SVG drawn behind the button.
+   It starts at the top because we rotate it by -90 degrees. */
+.sos-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.sos-ring-bg {
+  fill: none;
+  stroke: var(--red-light);
+  stroke-width: 10;
+}
+
+/* 628.32 is the length of the circle line (2 x 3.14159 x radius 100).
+   Offset = full length means the ring is empty. */
+.sos-ring-progress {
+  fill: none;
+  stroke: var(--red-dark);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 628.32;
+  stroke-dashoffset: 628.32;
+  transition: stroke-dashoffset 0.2s ease-out;
+}
+
+/* While the user holds the button, JavaScript adds the class "holding".
+   The ring then fills slowly in 2 seconds (offset goes to 0).
+   When the finger is lifted, the class is removed and the ring empties. */
+.sos-container.holding .sos-ring-progress {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 2s linear;
+}
+
+/* The big red round SOS button */
+.sos-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 78%;
+  height: 78%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff5252, var(--red) 60%, var(--red-dark));
+  color: var(--white);
+  font-family: inherit;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(183, 28, 28, 0.5);
+  transition: transform 0.1s;
+  /* Stop text selection, tap flash and the long-press menu on phones */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.sos-container.holding .sos-button {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+/* When SOS is active the button pulses */
+.sos-container.active .sos-button {
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 28px rgba(211, 47, 47, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(211, 47, 47, 0);
+  }
+}
+
+.sos-hint {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* Live tracking row: text on the left, switch on the right */
+.tracking-row {
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.status-text {
+  font-weight: 700;
+}
+.status-on {
+  color: var(--green);
+}
+.status-off {
+  color: var(--text-light);
+}
+
+/* ON / OFF switch. The real checkbox is invisible and lies on top. */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: var(--tap);
+  flex-shrink: 0;
+}
+
+.switch input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.slider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 7px;
+  bottom: 7px;
+  border-radius: 34px;
+  background: #bdbdbd;
+  transition: background 0.2s;
+}
+
+/* The round white knob */
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.switch input:checked + .slider {
+  background: var(--green);
+}
+.switch input:checked + .slider::before {
+  transform: translateX(30px);
+}
+.switch input:focus-visible + .slider {
+  outline: 3px solid #ffb300;
+  outline-offset: 2px;
+}
+
+.coords {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  word-break: break-word;
+}
+
+/* "Open in Google Maps" link */
+.map-link {
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  color: var(--red);
+}
+
+
+/* ---------- 11. Contacts and History pages ---------- */
+
+/* Contact list (used on Dashboard and Contacts page) */
+.contact-list {
+  list-style: none;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 0; /* lets long text wrap instead of overflowing */
+}
+
+.contact-name {
+  font-weight: 700;
+}
+
+.contact-meta {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  word-break: break-word;
+}
+
+/* History list */
+.history-list {
+  list-style: none;
+}
+
+.history-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.history-date {
+  font-weight: 700;
+}
+
+.history-sub {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* Status label: active (red) or resolved (green) */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.badge-active {
+  background: var(--red-light);
+  color: var(--red-dark);
+}
+.badge-resolved {
+  background: var(--green-light);
+  color: var(--green);
+}
+
+
+/* ---------- Less motion for people who ask for it ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .sos-banner,
+  .sos-container.active .sos-button {
+    animation: none;
+  }
+}
+
+
+/* ---------- 12. Bigger screens (tablet / laptop) ---------- */
+@media (min-width: 600px) {
+  .container,
+  .app-header-inner {
+    max-width: 560px;
+  }
+
+  .sos-container {
+    width: 280px;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .bottom-nav {
+    justify-content: center;
+  }
+  .bottom-nav a {
+    flex: 0 1 200px;
+  }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+  index.html  -  Landing page
+  Shows the project name, a short introduction and two buttons.
+  This page does NOT need api.js or any login check.
+
+  Note for the next steps:
+  - "Login" opens login.html (login form is shown first)
+  - "Register" opens login.html?tab=register (register form is shown first)
+    The code in auth.js will read "?tab=register" from the address.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- This line makes the page fit a phone screen -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d32f2f">
+  <title>SOS Safety - Cloud-Based SOS System for Women</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <main class="hero">
+    <!-- Icon (emoji, so no image file is needed) -->
+    <div class="hero-icon" aria-hidden="true">🆘</div>
+
+    <!-- Project name -->
+    <h1>Cloud-Based SOS System for Women</h1>
+
+    <!-- Short introduction -->
+    <p>
+      Press and hold one button to send an emergency alert. Your live location
+      is shared with your trusted contacts and a loud siren starts, so help
+      can reach you faster.
+    </p>
+
+    <!-- Login and Register buttons -->
+    <div class="hero-buttons">
+      <a class="btn btn-white btn-block" href="login.html">Login</a>
+      <a class="btn btn-outline-white btn-block" href="login.html?tab=register">Register</a>
+    </div>
+  </main>
+
+</body>
+</html>

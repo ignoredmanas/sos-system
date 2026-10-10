@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+  login.html  -  Login and Register page
+  One card with two forms. The tabs at the top switch between them.
+  The code that makes this page work is in js/auth.js.
+  Opening "login.html?tab=register" shows the Register form first.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- This line makes the page fit a phone screen -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d32f2f">
+  <title>Login - SOS Safety</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <main class="auth-wrapper">
+    <div class="card auth-card">
+
+      <div class="auth-logo">🆘 SOS Safety</div>
+      <p class="auth-subtitle">Your safety, one press away</p>
+
+      <!-- Tabs: Login / Register -->
+      <div class="tabs" role="tablist">
+        <button type="button" id="tab-login" class="tab active" role="tab" aria-selected="true">Login</button>
+        <button type="button" id="tab-register" class="tab" role="tab" aria-selected="false">Register</button>
+      </div>
+
+      <!-- Messages (errors and success) appear here -->
+      <div id="message" class="hidden" role="alert"></div>
+
+      <!-- ===== LOGIN FORM ===== -->
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label for="login-phone">Phone number</label>
+          <input type="tel" id="login-phone" inputmode="numeric" maxlength="10"
+                 placeholder="10-digit phone number" autocomplete="tel">
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password"
+                 placeholder="Your password" autocomplete="current-password">
+        </div>
+
+        <button type="submit" id="login-btn" class="btn btn-primary btn-block">Login</button>
+      </form>
+
+      <!-- ===== REGISTER FORM (hidden at first) ===== -->
+      <form id="register-form" class="hidden" novalidate>
+        <div class="form-group">
+          <label for="register-name">Full name</label>
+          <input type="text" id="register-name"
+                 placeholder="Your name" autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="register-phone">Phone number</label>
+          <input type="tel" id="register-phone" inputmode="numeric" maxlength="10"
+                 placeholder="10-digit phone number" autocomplete="tel">
+          <div class="form-hint">Exactly 10 digits, no spaces.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="register-email">Email (optional)</label>
+          <input type="email" id="register-email"
+                 placeholder="you@example.com" autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password"
+                 placeholder="Create a password" autocomplete="new-password">
+          <div class="form-hint">At least 6 characters.</div>
+        </div>
+
+        <button type="submit" id="register-btn" class="btn btn-primary btn-block">Create account</button>
+      </form>
+
+      <a class="link-center" href="index.html">← Back to home</a>
+    </div>
+  </main>
+
+  <!-- api.js must come first, then auth.js -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
