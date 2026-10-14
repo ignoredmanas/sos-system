@@ -1,0 +1,51 @@
+/* src/styles/Login.css */
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.login-brand {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.login-brand a {
+  color: var(--red);
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+/* Login / Register switch */
+.login-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  padding: 4px;
+  border-radius: var(--radius);
+  background: var(--red-light);
+}
+
+.login-tab {
+  flex: 1;
+  min-height: var(--tap);
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--red);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-tab.active {
+  background: var(--red);
+  color: var(--white);
+}

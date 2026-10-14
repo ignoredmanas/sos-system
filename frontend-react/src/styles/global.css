@@ -1,0 +1,305 @@
+/* src/styles/global.css */
+/* Global styles: red and white theme, mobile-first. */
+
+/* ===== Colors and sizes used everywhere ===== */
+:root {
+  --red: #d62839;
+  --red-dark: #b01e2c;
+  --red-light: #fdecee;
+  --white: #ffffff;
+  --bg: #fafafa;
+  --text: #222222;
+  --text-muted: #6b6b6b;
+  --border: #e3e3e3;
+  --green: #1f8a4c;
+  --green-dark: #17703c;
+  --green-light: #e8f6ee;
+  --blue-light: #eaf2fd;
+  --blue-text: #1b4f8f;
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --tap: 48px; /* minimum touch size */
+}
+
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 12px;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+a {
+  color: var(--red);
+  font-weight: 600;
+}
+
+a:hover {
+  color: var(--red-dark);
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Clear focus outline for keyboard users */
+:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* ===== Layout ===== */
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--tap);
+  padding: 12px 20px;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.05s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Full width button */
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* Main red button */
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--red-dark);
+  color: var(--white);
+}
+
+/* White button with red border */
+.btn-outline {
+  background: var(--white);
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: var(--red-light);
+  color: var(--red-dark);
+}
+
+/* Green button (for "I am safe") */
+.btn-success {
+  background: var(--green);
+  color: var(--white);
+}
+
+.btn-success:hover:not(:disabled) {
+  background: var(--green-dark);
+  color: var(--white);
+}
+
+/* ===== Forms ===== */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.form-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: var(--tap);
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px; /* 16px stops zoom on iPhone */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+/* Red border for a wrong field */
+.input-error {
+  border-color: var(--red);
+  background: var(--red-light);
+}
+
+.field-error {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: var(--red-dark);
+}
+/* ===== Message boxes ===== */
+.alert {
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+
+.alert-error {
+  background: var(--red-light);
+  color: var(--red-dark);
+  border: 1px solid var(--red);
+}
+
+.alert-success {
+  background: var(--green-light);
+  color: var(--green-dark);
+  border: 1px solid var(--green);
+}
+
+.alert-info {
+  background: var(--blue-light);
+  color: var(--blue-text);
+  border: 1px solid var(--blue-text);
+}
+
+/* ===== Small helpers ===== */
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+/* Hidden on screen but still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== Bigger screens ===== */
+@media (min-width: 768px) {
+  .container {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Respect "reduce motion" setting */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

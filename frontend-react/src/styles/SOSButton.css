@@ -1,0 +1,101 @@
+/* src/styles/SOSButton.css */
+
+.sos-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+}
+
+/* Progress ring (starts from the top) */
+.sos-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.sos-ring-bg {
+  fill: none;
+  stroke: var(--red-light);
+  stroke-width: 8;
+}
+
+.sos-ring-progress {
+  fill: none;
+  stroke: var(--red-dark);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+/* The big red circle */
+.sos-button {
+  position: absolute;
+  inset: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(214, 40, 57, 0.45);
+  transition: transform 0.1s, box-shadow 0.1s;
+
+  /* Stop text selection and the long-press menu on phones */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+.sos-button.holding {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(214, 40, 57, 0.45);
+}
+
+.sos-button:disabled {
+  cursor: default;
+}
+
+.sos-button.sos-sending {
+  opacity: 0.7;
+}
+
+/* Pulse while the SOS is active */
+.sos-button.sos-active {
+  animation: sos-pulse 1.2s ease-in-out infinite;
+}
+
+.sos-label {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.sos-button.sos-sending .sos-label,
+.sos-button.sos-active .sos-label {
+  font-size: 1.8rem;
+}
+
+.sos-hint {
+  min-height: 1.4em;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+@keyframes sos-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(214, 40, 57, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 22px rgba(214, 40, 57, 0);
+  }
+}
