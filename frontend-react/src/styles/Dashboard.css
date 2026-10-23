@@ -1,0 +1,62 @@
+/* src/styles/Dashboard.css */
+
+/* Red banner while an SOS is active */
+.sos-banner {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: var(--red);
+  color: var(--white);
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  animation: banner-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes banner-pulse {
+  from {
+    background: var(--red);
+  }
+  to {
+    background: var(--red-dark);
+  }
+}
+
+/* Card that holds the SOS button */
+.sos-center {
+  padding: 28px 16px;
+  text-align: center;
+}
+
+/* Contacts list inside the SOS panel */
+.sos-contacts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sos-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.sos-contact-name {
+  font-weight: 600;
+}
+
+.sos-contact-phone {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+@media (min-width: 480px) {
+  .sos-contact {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

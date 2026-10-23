@@ -1,0 +1,85 @@
+/* src/styles/History.css */
+
+.history-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.history-header h1 {
+  margin-bottom: 0;
+}
+
+.history-count {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.history-retry {
+  margin-top: 12px;
+}
+
+.history-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.history-item {
+  margin-bottom: 12px;
+}
+
+.history-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.history-date {
+  font-weight: 700;
+}
+
+/* Status pill */
+.history-badge {
+  flex: 0 0 auto;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.history-badge-active {
+  background: var(--red);
+  color: var(--white);
+}
+
+.history-badge-resolved {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+
+.history-message {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+  word-break: break-word;
+}
+
+.history-resolved {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.history-map {
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .history-map {
+    width: auto;
+  }
+}

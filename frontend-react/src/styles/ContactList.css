@@ -1,0 +1,45 @@
+/* src/styles/ContactList.css */
+
+.contact-list {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.contact-info {
+  min-width: 0;
+}
+
+.contact-name {
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.contact-phone {
+  color: var(--text-muted);
+}
+
+/* Small pill with the relation */
+.contact-relation {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--red-light);
+  color: var(--red-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.contact-delete {
+  flex: 0 0 auto;
+  min-width: 88px;
+}

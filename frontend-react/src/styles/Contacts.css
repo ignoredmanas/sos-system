@@ -1,0 +1,22 @@
+/* src/styles/Contacts.css */
+
+.contacts-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.contacts-header h1 {
+  margin-bottom: 0;
+}
+
+.contacts-count {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.contacts-retry {
+  margin-top: 12px;
+}
